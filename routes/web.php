@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//this will get the list of articles to show in the front page
+Route::get('/', 'PostsController@index')->name('landing');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes();
+
+Route::resource('posts', 'PostsController');
