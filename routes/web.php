@@ -12,7 +12,7 @@
 */
 //this will get the list of articles to show in the front page
 Route::get('/', 'PostsController@index')->name('landing');
-
+Route::POST('/search', 'PostsController@search')->name('search');
 Auth::routes();
 
 Route::resource('posts', 'PostsController');

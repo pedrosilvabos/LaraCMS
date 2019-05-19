@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
+  public function __construct()
+  {
+      $this->middleware('auth', ['only' => ['create', 'store', 'edit', 'delete']]);
+  }
     /**
      * Display a listing of the resource.
      *
@@ -108,5 +112,10 @@ class PostsController extends Controller
         $posts->delete();
 
         return redirect('/posts')->with('danger', 'stock has been deleted');
+    }
+
+    public function search(Request $request){
+       $posts  = Posts::where('post_name', 'like', '%' . $request->get('q') . '%' )->get();
+       return view('blog.index', compact('posts'));
     }
 }

@@ -10,8 +10,17 @@
 <body>
   @if (Route::has('login'))
         <div class="top-right links">
+
             @auth
-                <a href="{{ url('/home') }}">Home</a>
+                <a href="{{ url('/') }}">Home</a>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+                Logout
+                </a>
+
+                <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+                <a href="{{ url('/posts/create') }}">Create Article</a>
             @else
                 <a href="{{ route('login') }}">Login</a>
 
@@ -21,7 +30,7 @@
             @endauth
         </div>
     @endif
-    
+
   <div class="container">
     @yield('content')
   </div>
