@@ -116,6 +116,7 @@ class PostsController extends Controller
 
     public function search(Request $request){
        $posts  = Posts::where('post_name', 'like', '%' . $request->get('q') . '%' )->get();
+       echo $posts;
        return view('blog.index', compact('posts'));
     }
 }
